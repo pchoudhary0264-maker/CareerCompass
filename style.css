@@ -1,1 +1,17 @@
+body{
+    margin:0;
+    font-family:Poppins, Arial, sans-serif;
+    background:#F9FAFB;
+    text-align:center;
+    padding-top:120px;
+}
 
+h1{
+    color:#2563EB;
+    font-size:48px;
+}
+
+p{
+    font-size:22px;
+    color:#6B7280;
+}
