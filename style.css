@@ -52,7 +52,10 @@ nav ul li a:hover{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:80px;
+    padding:100px 80px;
+    background:linear-gradient(135deg,#EFF6FF,#DBEAFE);
+    border-radius:20px;
+    margin:30px;
 }
 
 .hero-text{
