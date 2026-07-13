@@ -36,29 +36,27 @@ Answer the questions below to discover careers that match your interests.
 <p>Which activity do you enjoy the most?</p>
   <hr>
 
-<label><input type="radio" name="q1"> Solving math and logic problems</label><br><br>
+<label><input type="radio" name="q1" value="tech"> Solving math and logic problems</label><br><br>
 
-<label><input type="radio" name="q1"> Helping people</label><br><br>
+<label><input type="radio" name="q1" value="doctor"> Helping people</label><br><br>
 
-<label><input type="radio" name="q1"> Drawing and designing</label><br><br>
+<label><input type="radio" name="q1" value="design"> Drawing and designing</label><br><br>
 
-<label><input type="radio" name="q1"> Building or fixing things</label><br><br>
-
+<label><input type="radio" name="q1" value="engineer"> Building or fixing things</label><br><br>
 <hr>
 
 <h3>Question 2</h3>
 
 <p>Which subject do you enjoy the most?</p>
 
-<label><input type="radio" name="q2"> Mathematics</label><br><br>
+<label><input type="radio" name="q2" value="tech"> Mathematics</label><br><br>
 
-<label><input type="radio" name="q2"> Science</label><br><br>
+<label><input type="radio" name="q2" value="doctor"> Science</label><br><br>
 
-<label><input type="radio" name="q2"> English</label><br><br>
+<label><input type="radio" name="q2" value="design"> English</label><br><br>
 
-<label><input type="radio" name="q2"> Social Science</label><br><br>
-  <hr>
-
+<label><input type="radio" name="q2" value="business"> Social Science</label><br><br>
+<hr>
 <h3>Question 3</h3>
 
 <p>What type of work environment do you prefer?</p>
@@ -98,7 +96,11 @@ Answer the questions below to discover careers that match your interests.
 <label><input type="radio" name="q5"> Arts & Design</label><br><br>
   <br>
 
-<button class="btn">🤖 Submit Quiz</button>
+<button class="btn" onclick="predictCareer()">🤖 Submit Quiz</button>
+  <div id="result" class="card" style="display:none; margin-top:30px;">
+    <h3>🤖 AI Career Recommendation</h3>
+    <p id="careerResult"></p>
+</div>
   <br><br>
 
 <div class="card">
@@ -115,6 +117,57 @@ Based on your interests and quiz responses, CareerCompass recommends exploring <
 </div>
 
 </section>
+<script>
+function predictCareer() {
 
+    let scores = {
+        "Software Engineer": 0,
+        "Doctor": 0,
+        "Graphic Designer": 0,
+        "Civil Engineer": 0
+    };
+
+    // Get selected answers
+    let answers = document.querySelectorAll("input[type='radio']:checked");
+
+    answers.forEach(answer => {
+        if(answer.value === "tech") {
+            scores["Software Engineer"]++;
+        }
+
+        if(answer.value === "doctor") {
+            scores["Doctor"]++;
+        }
+
+        if(answer.value === "design") {
+            scores["Graphic Designer"]++;
+        }
+
+        if(answer.value === "engineer") {
+            scores["Civil Engineer"]++;
+        }
+    });
+
+
+    // Find highest score
+    let career = "Software Engineer";
+    let highest = 0;
+
+    for(let job in scores){
+        if(scores[job] > highest){
+            highest = scores[job];
+            career = job;
+        }
+    }
+
+
+    // Show result
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("careerResult").innerHTML =
+    "Based on your answers, your recommended career is:<br><br><h2>🎯 " 
+    + career + "</h2>";
+}
+</script>
 </body>
 </html>
